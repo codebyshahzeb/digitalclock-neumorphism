@@ -1,58 +1,104 @@
 *{
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 body{
     height: 100vh;
-    background: linear-gradient(45deg,#c31432,#240b36);
+    background: #D3CCE3;  /* light grey */
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+/* Clock container */
 .clock{
-    width: 300px;
-    height: 200px;
-    background: rgba(255, 255,255,0.08);
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
-    border: 1px solid rgba(255, 255, 255,0.40);
-    box-shadow: 0px 4px 15px rgba(0,0,0,0.02);
-    border-radius: 2px;
+    width: 400px;
+    height: 300px;
+    background: #e0e0e0;
+    border-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+
+    /* Container depth */
+    box-shadow: 
+        8px 8px 15px #bebebe,
+        -8px -8px 15px #ffffff;
+    color: #333;
     font-size: 50px;
-    color: white;
-   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
 }
-#hrs::after{
-    content: "HOURS";
-    font-size: 16px;
+
+/* Each span (hours, mins, secs) relative */
+.clock span{
+    position: relative;
+    margin: 0 5px;
+    padding: 5px 10px;
+    border-radius: 10px;
+
+    /* Remove depth for colons */
+    /* Apply depth only to numbers, not colons */
+    background: #e0e0e0;
+    text-shadow: none;
+    box-shadow: none;
+}
+
+/* Add depth only to number spans (ids) */
+#hrs, #mins, #secs {
+    box-shadow: 
+        inset 3px 3px 5px #bebebe,
+        inset -3px -3px 5px #ffffff;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+/* Labels using ::after for numbers */
+#hrs::after,
+#mins::after,
+#secs::after {
+    content: attr(id); /* Shows 'hrs', 'mins', 'secs' */
+    text-transform: uppercase; /* Capital letters */
+    font-size: 14px;
     position: absolute;
-    bottom: 52px;
-    left: 60px;
-     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #555;
+    padding: 3px 6px;
+    border-radius: 5px;
+    background: #e0e0e0;
+
+    /* Depth effect for labels */
+    box-shadow: 
+        2px 2px 5px #bebebe,
+        -2px -2px 5px #ffffff,
+        inset 1px 1px 2px #bebebe,
+        inset -1px -1px 2px #ffffff;
+
+    text-shadow: 0 1px 1px rgba(0,0,0,0.2);
 }
-#mins::after{
-    content: "MINS";
-    font-size: 16px;
-    position: absolute;
-    bottom: 52px;
-    left: 132px;
-     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+/* Optional hover effects only for number spans */
+#hrs:hover,
+#mins:hover,
+#secs:hover {
+    box-shadow: 
+        inset 1px 1px 2px #bebebe,
+        inset -1px -1px 2px #ffffff,
+        3px 3px 6px rgba(0,0,0,0.1);
+    transform: translateY(-1px);
 }
-#secs::after{
-    content: "SECS";
-    font-size: 16px;
-    position: absolute;
-    bottom: 52px;
-    left: 197px;
-     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
+
 h1{
-   color: white;
-   margin-bottom: 40px;
-   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 40px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 800;
+    font-size: 48px;
+    /* Gradient text */
+    background: linear-gradient(90deg, #7F00FF, #E100FF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
